@@ -4,11 +4,21 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.*;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+//classes we make are imported here:
+import frc.robot.subsystems.DriveTrain;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,10 +27,19 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * directory.
  */
 public class Robot extends TimedRobot {
-  private final DifferentialDrive m_robotDrive =
-      new DifferentialDrive(new PWMSparkMax(0), new PWMSparkMax(1));
+  // private final DifferentialDrive m_robotDrive = new DifferentialDrive(new PWMSparkMax(0), new PWMSparkMax(1));
   private final Joystick m_stick = new Joystick(0);
   private final Timer m_timer = new Timer();
+  public static final DriveTrain drivetrain = new DriveTrain();
+
+  //These were on the FRC_2021 project - I'm not sure if they have to do with the radio, so I just added them in:
+  public static NetworkTableInstance rpi3;
+  //public static NetworkTableEntry to_the_right;
+  //public static NetworkTableEntry to_the_left;
+  public static NetworkTableEntry ultrasonicReading;
+
+  //This is proactive - I'm not sure we'll end up NEEDING this, but I'm guessing it will be nescessary
+  public static final double DRIVE_SENSITIVITY_MULT = 1;
   
 
   /**
@@ -28,7 +47,14 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+    //again, copied from FRC_2021 since I'm not 100% sure of its function yet
+    final NetworkTableInstance inst = NetworkTableInstance.getDefault();
+		final NetworkTable ntstuff = inst.getTable("obs");
+    ultrasonicReading = ntstuff.getEntry("dist");
+		//to_the_right  = ntstuff.getEntry("r");
+		//to_the_left   = ntstuff.getEntry("l");
+  }
 
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
@@ -40,12 +66,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // Drive for 2 seconds
-    if (m_timer.get() < 2.0) {
-      m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
-    } else {
-      m_robotDrive.stopMotor(); // stop robot
-    }
+    
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */
@@ -55,7 +76,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    m_robotDrive.arcadeDrive(m_stick.getY(), m_stick.getX());
+    
   }
 
   /** This function is called once each time the robot enters test mode. */
