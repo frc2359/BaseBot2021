@@ -13,4 +13,8 @@ public class RobotMap {
     public static final int ID_DRIVE_FR = 00;
     public static final int ID_DRIVE_BR = 00;
     public static final int ID_DRIVE_BL = 00;
+
+    // Motor Control Brake Modes
+        //false = coast; true = brake
+    public static final boolean BRAKE_MODE_DRIVE = true; //when the controller is moved back to a neutral position, the motors will STOP
 }
