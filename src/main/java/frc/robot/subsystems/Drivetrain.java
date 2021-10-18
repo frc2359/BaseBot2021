@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.CANifier.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import frc.robot.RobotMap;
+import frc.robot.IO;
 
 
 public class DriveTrain implements Subsystem {
@@ -20,6 +21,7 @@ public class DriveTrain implements Subsystem {
     WPI_VictorSPX backLeft = new WPI_VictorSPX(RobotMap.ID_DRIVE_BR);
     WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.ID_DRIVE_BL);
     Timer time = new Timer(); // timer for controlling timedDrive
+    
     // Setup Differential Drive based on Master Motor Controllers
     private DifferentialDrive drive = new DifferentialDrive(frontLeft,frontRight);
 
@@ -29,8 +31,8 @@ public class DriveTrain implements Subsystem {
         /* Motor controllers default motor safety OFF.
             WPI drive trains default motor safety ON.
             Experiment with different enables below.... */
-        //m_LeftDrive_1.setSafetyEnabled(true);
-        //m_RightDrive_1.setSafetyEnabled(true);
+        //frontLeft.setSafetyEnabled(true);
+        //frontRight.setSafetyEnabled(true);
         //drive.setSafetyEnabled(false);
 
 
@@ -76,48 +78,33 @@ public class DriveTrain implements Subsystem {
     
     // public DifferentialDrive smartDrive = new DifferentialDrive(driveBase[0], driveBase[1]);
 
-    public void initDefaultCommand() {
-        // smartDrive.setSafetyEnabled(false);
-    }
+    public void initDefaultCommand() {}
 
-    public void setDriveOrientation (boolean _flag){    // true = forward; false = reverse
-        driveOrientationFwd = _flag;
-    }
-
-    public void drive(double l, double r) { 
-
-        int inverse = driveOrientationFwd ? 1 : -1;
-
-        frontLeft.pidWrite(l * RobotMap.DRIVE_THROTTLE * inverse);
-        frontRight.pidWrite(r * RobotMap.DRIVE_THROTTLE * inverse);
-
+    public void drive() { 
+        //convert the x-axis value given by the controller into a multiplier
+        double lMult = 1; //speed multiplier
+        double rMult = 1; //speed multiplier
+        if(IO.getDriveXAxis() < 0) { //This is for steering. We will need to check the functionality of this 
+            rMult = 0.5;
+        } else {
+            lMult = 0.5; 
+        }
+        if(IO.reverseTriggerIsPressed() && IO.throttleTriggerIsPressed()) { 
+            //When both triggers are pressed, stop the robot. This is mostly to avoid potential issues that arise if there is no conditional here.
+            frontLeft.stopMotor();
+            frontRight.stopMotor();
+        } else if(IO.throttleTriggerIsPressed()) {
+            frontLeft.pidWrite(IO.getDriveTrigger() * lMult);
+            frontRight.pidWrite(IO.getDriveTrigger() * rMult);
+        } else if(IO.reverseTriggerIsPressed()) {
+            frontLeft.pidWrite(IO.getReverseTrigger() * lMult);
+            frontRight.pidWrite(IO.getReverseTrigger() * rMult);
+        }
     }
 
     public void stopMotors() {
-        //for (int index = 0; index < driveBase.length; index++) {
-        //    driveBase[index].stopMotor();
-        //}
         frontLeft.stopMotor();
         backLeft.stopMotor();
-    }
-
-    public void log() {
-        SmartDashboard.putNumber("Encoders Distance", getDistanceTraveled());
-        //SmartDashboard.putNumber("Encoders Index", encoders.length);
-    }
-
-    public double deadBand (double _val) {
-        if (_val > 1) {
-            _val = 1;
-        }
-        if (_val < -1) {
-            _val = -1;
-        } 
-        if (_val <= RobotMap.DEADBAND_VALUE_DRIVER && _val >= -RobotMap.DEADBAND_VALUE_DRIVER) {
-            return 0;
-        } else {
-            return _val;
-        }
     }
 }
 

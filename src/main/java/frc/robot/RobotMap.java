@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.*;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -13,6 +16,11 @@ public class RobotMap {
     public static final int ID_DRIVE_FR = 00;
     public static final int ID_DRIVE_BR = 00;
     public static final int ID_DRIVE_BL = 00;
+
+    //This is the mapping of the buttons to the various functions of the robot
+    public static final Hand THROTTLE = Hand.kRight; //Throttle mapped to the HAND SIDE
+    public static final Hand REVERSE = Hand.kLeft;
+    public static final Hand STEER_SIDE = Hand.kRight;
 
     // Motor Control Brake Modes
         //false = coast; true = brake
