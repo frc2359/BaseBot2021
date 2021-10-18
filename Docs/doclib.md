@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <h1>APIs</h1>
 <dl>
     <dt> <a href="https://docs.oracle.com/en/java/javase/11/docs/api/index.html"><b><u>Java API</b></u></a></dt>
