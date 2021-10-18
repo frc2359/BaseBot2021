@@ -15,8 +15,14 @@ import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 
+//These are here for the direct killswitch if the other classes do not periodically update themselves
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.*;
+
 //classes we make are imported here:
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.IO;
+
 
 
 
@@ -77,6 +83,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drivetrain.drive();
+    //killswitch if things get hairy
+    final XboxController driver = new XboxController(0); //this is a beta feature that was not used in the original code
+    killswitch(driver);
   }
 
   /** This function is called once each time the robot enters test mode. */
@@ -86,4 +95,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {}
+
+  public void killswitch(XboxController driver) {
+    if(driver.getBButtonReleased()) {
+      drivetrain.stopMotors();
+    }
+  }
 }

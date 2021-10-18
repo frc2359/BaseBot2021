@@ -104,6 +104,9 @@ public class DriveTrain implements Subsystem {
 
     public void stopMotors() {
         frontLeft.stopMotor();
+        frontRight.stopMotor();
+        //should not be needed
+        backRight.stopMotor();
         backLeft.stopMotor();
     }
 }
