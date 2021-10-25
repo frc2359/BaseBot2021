@@ -23,7 +23,7 @@ public class Drivetrain implements Subsystem {
     Timer time = new Timer(); // timer for controlling timedDrive
     
     // Setup Differential Drive based on Master Motor Controllers
-    private DifferentialDrive drive = new DifferentialDrive(frontLeft,frontRight);
+    private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
     //--IMPORTED FROM FRC_2021--
 

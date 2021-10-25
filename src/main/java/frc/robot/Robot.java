@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
     final NetworkTableInstance inst = NetworkTableInstance.getDefault();
 		final NetworkTable ntstuff = inst.getTable("obs");
     ultrasonicReading = ntstuff.getEntry("dist");
+    drivetrain.init();
 		//to_the_right  = ntstuff.getEntry("r");
 		//to_the_left   = ntstuff.getEntry("l");
   }
