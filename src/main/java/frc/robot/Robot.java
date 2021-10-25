@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.*;
 
 //classes we make are imported here:
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.IO;
 
 
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   // private final DifferentialDrive m_robotDrive = new DifferentialDrive(new PWMSparkMax(0), new PWMSparkMax(1));
   private final Joystick m_stick = new Joystick(0);
   private final Timer m_timer = new Timer();
-  public static final DriveTrain drivetrain = new DriveTrain();
+  public static final Drivetrain drivetrain = new Drivetrain();
 
   //These were on the FRC_2021 project - I'm not sure if they have to do with the radio, so I just added them in:
   public static NetworkTableInstance rpi3;

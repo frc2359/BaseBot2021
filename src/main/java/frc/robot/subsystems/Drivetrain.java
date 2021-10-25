@@ -11,15 +11,15 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.CANifier.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import frc.robot.RobotMap;
+import static frc.robot.RobotMap.*;
 import frc.robot.IO;
 
 
-public class DriveTrain implements Subsystem {
-    WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.ID_DRIVE_FL);
-    WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.ID_DRIVE_FR);
-    WPI_VictorSPX backLeft = new WPI_VictorSPX(RobotMap.ID_DRIVE_BR);
-    WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.ID_DRIVE_BL);
+public class Drivetrain implements Subsystem {
+    WPI_VictorSPX frontLeft = new WPI_VictorSPX(ID_DRIVE_FL);
+    WPI_VictorSPX frontRight = new WPI_VictorSPX(ID_DRIVE_FR);
+    WPI_VictorSPX backLeft = new WPI_VictorSPX(ID_DRIVE_BR);
+    WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
     Timer time = new Timer(); // timer for controlling timedDrive
     
     // Setup Differential Drive based on Master Motor Controllers
@@ -57,10 +57,10 @@ public class DriveTrain implements Subsystem {
         frontRight.setSensorPhase(true); // Check
 
         //Set Brake/Coast Options
-        frontLeft.setNeutralMode(RobotMap.BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
-        backLeft.setNeutralMode(RobotMap.BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
-        frontRight.setNeutralMode(RobotMap.BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
-        backRight.setNeutralMode(RobotMap.BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
+        frontLeft.setNeutralMode(BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
+        backLeft.setNeutralMode(BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
+        frontRight.setNeutralMode(BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
+        backRight.setNeutralMode(BRAKE_MODE_DRIVE ? NeutralMode.Brake : NeutralMode.Coast);
         
 
         //Set Math.clamp Switch Positions

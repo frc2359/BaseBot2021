@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.GenericHID.*;
  * floating around. -- This is a standard created by the previous team (thanks!).
  */
 
-public class RobotMap {
+public interface RobotMap { // Change this to an enum
     //--NOTE: These numbers are placeholders until we find the correct IDs--
     public static final int ID_DRIVE_FL = 00;
     public static final int ID_DRIVE_FR = 00;
