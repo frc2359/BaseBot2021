@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj.GenericHID.*;
 public interface RobotMap { // Change this to an enum
     //--NOTE: These numbers are placeholders until we find the correct IDs--
     public static final int ID_DRIVE_FL = 00;
-    public static final int ID_DRIVE_FR = 00;
-    public static final int ID_DRIVE_BR = 00;
-    public static final int ID_DRIVE_BL = 00;
+    public static final int ID_DRIVE_FR = 01;
+    public static final int ID_DRIVE_BR = 02;
+    public static final int ID_DRIVE_BL = 03;
 
     //This is the mapping of the buttons to the various functions of the robot
     public static final Hand THROTTLE = Hand.kRight; //Throttle mapped to the HAND SIDE
     public static final Hand REVERSE = Hand.kLeft;
-    public static final Hand STEER_SIDE = Hand.kRight;
+    public static final Hand STEER_SIDE = Hand.kLeft;
 
     // Motor Control Brake Modes
         //false = coast; true = brake
