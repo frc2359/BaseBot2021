@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    drivetrain.drive();
+    drivetrain.arcadeDrive();
     //killswitch if things get hairy
     final XboxController driver = new XboxController(0); //this is a beta feature that was not used in the original code
     killswitch(driver);

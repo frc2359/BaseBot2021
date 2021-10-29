@@ -26,6 +26,9 @@ public class Drivetrain implements Subsystem {
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
     //--IMPORTED FROM FRC_2021--
+    public void arcadeDrive() {
+        drive.arcadeDrive(IO.getDriveTrigger(), IO.getDriveXAxis());
+    }
 
     public void init() {
         /* Motor controllers default motor safety OFF.
