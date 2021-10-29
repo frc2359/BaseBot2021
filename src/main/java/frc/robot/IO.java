@@ -3,10 +3,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.*;
 import edu.wpi.first.wpilibj.Joystick;
-//import frc.robot.RobotMap;
+import static frc.robot.RobotMap.*;
 
 public class IO {
-    private static XboxController driver = new XboxController(0); //this is a beta feature that was not used in the original code
+    private static XboxController driver = new XboxController(DRIVE_PORT); //this is a beta feature that was not used in the original code
 
     //Returns whether or not the trigger mapped to the throttle is pressed.
     public static boolean throttleTriggerIsPressed() {
