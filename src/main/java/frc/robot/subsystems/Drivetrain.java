@@ -27,7 +27,11 @@ public class Drivetrain implements Subsystem {
 
     //--IMPORTED FROM FRC_2021--
     public void arcadeDrive() {
-        drive.arcadeDrive(IO.getDriveTrigger(), IO.getDriveXAxis());
+        if ((IO.getDriveTrigger() - IO.getReverseTrigger()) > 1 || (IO.getDriveTrigger() - IO.getReverseTrigger()) < -1) {
+            System.out.println("out of bounds drive value. go to Drivetrain.java line 34 and edit to an in-bounds expression");
+        } else {
+            drive.arcadeDrive(IO.getDriveTrigger() - IO.getReverseTrigger(), IO.getDriveXAxis());
+        }
     }
 
     public void init() {
