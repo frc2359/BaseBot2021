@@ -28,7 +28,13 @@ public class IO {
         return driver.getTriggerAxis(RobotMap.REVERSE);
     }
 
+    //gets the amount of tilt in the x-axis for directional steering
     public static double getDriveXAxis() {
         return driver.getX(RobotMap.STEER_SIDE);
+    }
+
+    //gets throttle value (negative is backwards, positive is forwards)
+    public static double getThrottle() {
+        return (getDriveTrigger() - getReverseTrigger()) * DRIVE_SPEED_MULT;
     }
 }
