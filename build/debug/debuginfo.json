@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project BaseBot2021)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "BaseBot2021",
+    "language": "java"
+  }
+]
