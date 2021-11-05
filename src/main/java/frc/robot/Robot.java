@@ -66,14 +66,16 @@ public class Robot extends TimedRobot {
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
-    m_timer.reset();
-    m_timer.start();
+    // m_timer.reset();
+    // m_timer.start();
+    drivetrain.autoDrive(2, 0.5, 0);
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    
+    drivetrain.killswitch();
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */
@@ -94,9 +96,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {}
 
-  public void killswitch(XboxController driver) {
-    if(driver.getBButtonReleased()) {
-      drivetrain.stopMotors();
-    }
-  }
+
 }

@@ -120,6 +120,12 @@ public class Drivetrain implements Subsystem {
         }
     }
 
+    public void killswitch() {
+        if(IO.bButtonIsReleased()) {
+          this.stopMotors();
+        }
+      }
+
     public void stopMotors() {
         frontLeft.stopMotor();
         frontRight.stopMotor();
