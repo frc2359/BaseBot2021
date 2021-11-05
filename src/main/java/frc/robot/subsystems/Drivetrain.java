@@ -40,7 +40,8 @@ public class Drivetrain implements Subsystem {
         if (speed < 1 && speed > -1 && turn < 1 && turn > -1) {
             timer.start();
             while(timer.hasElapsed(time)) {
-                drive.arcadeDrive(speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
+                System.out.println(time);
+                drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
             }
         }
     }
