@@ -37,4 +37,8 @@ public class IO {
     public static double getThrottle() {
         return (getDriveTrigger() - getReverseTrigger()) * DRIVE_SPEED_MULT;
     }
+
+    public static boolean bButtonIsReleased() {
+        return driver.getBButtonReleased();
+    }
 }
