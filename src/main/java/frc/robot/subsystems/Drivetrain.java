@@ -20,7 +20,7 @@ public class Drivetrain implements Subsystem {
     WPI_VictorSPX frontRight = new WPI_VictorSPX(ID_DRIVE_FR);
     WPI_VictorSPX backLeft = new WPI_VictorSPX(ID_DRIVE_BR);
     WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
-    Timer time = new Timer(); // timer for controlling timedDrive
+    Timer timer = new Timer(); // timer for controlling timedDrive
     
     // Setup Differential Drive based on Master Motor Controllers
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
@@ -33,6 +33,15 @@ public class Drivetrain implements Subsystem {
             System.out.println("out of bounds drive value. go to Drivetrain.java line 34 and edit to an in-bounds expression");
         } else {
             drive.arcadeDrive(IO.getThrottle(), IO.getDriveXAxis() * DRIVE_SPEED_MULT);
+        }
+    }
+
+    public void autoDrive(double time, double speed, double turn) {
+        if (speed < 1 && speed > -1 && turn < 1 && turn > -1) {
+            timer.start();
+            while(timer.hasElapsed(time)) {
+                drive.arcadeDrive(speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
+            }
         }
     }
 
