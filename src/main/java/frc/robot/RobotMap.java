@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj.GenericHID.*;
  */
 
 public interface RobotMap { // Change this to an enum
-    //--NOTE: These numbers are placeholders until we find the correct IDs--
-    public static final int ID_DRIVE_FL = 0;
-    public static final int ID_DRIVE_FR = 1;
+    public static final int ID_DRIVE_FR = 0;
+    public static final int ID_DRIVE_FL = 1;
     public static final int ID_DRIVE_BR = 2;
     public static final int ID_DRIVE_BL = 3;
+
+    public static final double DRIVE_SPEED_MULT = 0.6;
 
     //This is the mapping of the buttons to the various functions of the robot
     public static final Hand THROTTLE = Hand.kRight; //Throttle mapped to the HAND SIDE
