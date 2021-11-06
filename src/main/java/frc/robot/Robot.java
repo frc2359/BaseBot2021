@@ -46,8 +46,7 @@ public class Robot extends TimedRobot {
 
   //This is proactive - I'm not sure we'll end up NEEDING this, but I'm guessing it will be nescessary
   public static final double DRIVE_SENSITIVITY_MULT = 1;
-
-  private static int repeat = 0;
+  private static int repeat;
   
 
   /**
@@ -68,21 +67,15 @@ public class Robot extends TimedRobot {
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
-    // m_timer.reset();
-    // m_timer.start();
-    drivetrain.autoDrive(0.5, 0.5, 0);
-
+    m_timer.reset();
+    m_timer.start();
+    //repeat = -10;
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // if (repeat >= 10) {
-    //   drivetrain.autoDrive(2, 0.5, 0);
-    //   repeat++;
-    System.out.println(repeat);
-    // }
-    // drivetrain.killswitch();
+      drivetrain.autoDrive(5, 0.5, 0);
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */

@@ -37,12 +37,11 @@ public class Drivetrain implements Subsystem {
     }
 
     public void autoDrive(double time, double speed, double turn) {
-        if (speed < 1 && speed > -1 && turn < 1 && turn > -1) {
-            timer.start();
-            while(timer.hasElapsed(time)) {
-                System.out.println(time);
-                drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
-            }
+        if (timer.get() <= time && speed < 1 && speed > -1 && turn < 1 && turn > -1) {
+            System.out.println(m_timer.get());
+            drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
+        } else {
+            drivetrain.killswitch();
         }
     }
 
