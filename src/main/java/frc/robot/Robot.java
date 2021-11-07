@@ -5,19 +5,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.GenericHID;
+// import edu.wpi.first.wpilibj.Ultrasonic;
+// import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj.command.Scheduler;
+// import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.*;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 
 //These are here for the direct killswitch if the other classes do not periodically update themselves
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.*;
+// import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj.GenericHID.*;
 
 //classes we make are imported here:
 import frc.robot.subsystems.Drivetrain;
@@ -34,7 +34,7 @@ import frc.robot.IO;
  */
 public class Robot extends TimedRobot {
   // private final DifferentialDrive m_robotDrive = new DifferentialDrive(new PWMSparkMax(0), new PWMSparkMax(1));
-  private final Joystick m_stick = new Joystick(0);
+  // private final Joystick m_stick = new Joystick(0);
   private final Timer m_timer = new Timer();
   public static final Drivetrain drivetrain = new Drivetrain();
 
@@ -46,7 +46,6 @@ public class Robot extends TimedRobot {
 
   //This is proactive - I'm not sure we'll end up NEEDING this, but I'm guessing it will be nescessary
   public static final double DRIVE_SENSITIVITY_MULT = 1;
-  private static int repeat;
   
 
   /**

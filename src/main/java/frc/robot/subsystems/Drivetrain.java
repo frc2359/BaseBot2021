@@ -2,14 +2,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.CANifier.*;
+// import com.ctre.phoenix.motorcontrol.can.*;
+// import com.ctre.phoenix.CANifier.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import static frc.robot.RobotMap.*;
 import frc.robot.IO;
@@ -38,10 +38,10 @@ public class Drivetrain implements Subsystem {
 
     public void autoDrive(double time, double speed, double turn) {
         if (timer.get() <= time && speed < 1 && speed > -1 && turn < 1 && turn > -1) {
-            System.out.println(m_timer.get());
+            System.out.println(timer.get());
             drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
         } else {
-            drivetrain.killswitch();
+            this.killswitch();
         }
     }
 
