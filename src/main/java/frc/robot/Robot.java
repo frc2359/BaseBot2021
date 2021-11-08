@@ -15,9 +15,6 @@ import edu.wpi.first.networktables.*;
 // import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 
-//These are here for the direct killswitch if the other classes do not periodically update themselves
-// import edu.wpi.first.wpilibj.XboxController;
-// import edu.wpi.first.wpilibj.GenericHID.*;
 
 //classes we make are imported here:
 import frc.robot.subsystems.Drivetrain;
