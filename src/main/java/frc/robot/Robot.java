@@ -71,7 +71,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-      drivetrain.autoDrive(5, 0.5, 0);
+      drivetrain.autoTimeDrive(5, 0.5, 0);
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */

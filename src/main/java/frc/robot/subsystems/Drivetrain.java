@@ -22,7 +22,7 @@ public class Drivetrain implements Subsystem {
     WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
     Timer timer = new Timer(); //for timing autonomous functions
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight); //front motors are masters & control inputs for both front and back
-
+    private Encoder driveEncLeft = new Encoder(0,1);
     /** drive function that can be called without having to pass in private vairables **/
     public void arcadeDrive() {
         if ((IO.getDriveTrigger() - IO.getReverseTrigger()) > 1 || (IO.getDriveTrigger() - IO.getReverseTrigger()) < -1) {
@@ -33,13 +33,17 @@ public class Drivetrain implements Subsystem {
     }
 
     /**  automated drive function that can be called and executed without direct input from a controller **/
-    public void autoDrive(double time, double speed, double turn) {
+    public void autoTimeDrive(double time, double speed, double turn) {
         if (timer.get() <= time && speed < 1 && speed > -1 && turn < 1 && turn > -1) {
             System.out.println(timer.get());
             drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
         } else {
             this.stopMotors();
         }
+    }
+
+    public void autoDistDrive(double dist, double speed) {
+        encoder.setDistancePerPulse(1./256.);
     }
 
     /**initialize the drivetrain**/
