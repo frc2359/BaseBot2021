@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import edu.wpi.first.wpilibj.Encoder;
 // import com.ctre.phoenix.motorcontrol.can.*;
 // import com.ctre.phoenix.CANifier.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -22,7 +23,7 @@ public class Drivetrain implements Subsystem {
     WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
     Timer timer = new Timer(); //for timing autonomous functions
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight); //front motors are masters & control inputs for both front and back
-    private Encoder driveEncLeft = new Encoder(0,1);
+    private Encoder driveEncoder = new Encoder(0,1); // parameters are ports
     /** drive function that can be called without having to pass in private vairables **/
     public void arcadeDrive() {
         if ((IO.getDriveTrigger() - IO.getReverseTrigger()) > 1 || (IO.getDriveTrigger() - IO.getReverseTrigger()) < -1) {
