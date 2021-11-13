@@ -23,7 +23,10 @@ public class Drivetrain implements Subsystem {
     WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
     Timer timer = new Timer(); //for timing autonomous functions
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight); //front motors are masters & control inputs for both front and back
-    private Encoder driveEncoder = new Encoder(0,1); // parameters are ports
+    private Encoder encoderL = new Encoder(6,7); // parameters are ports
+    private Encoder encoderR = new Encoder(8,9);
+    
+
     /** drive function that can be called without having to pass in private vairables **/
     public void arcadeDrive() {
         if ((IO.getDriveTrigger() - IO.getReverseTrigger()) > 1 || (IO.getDriveTrigger() - IO.getReverseTrigger()) < -1) {
@@ -43,8 +46,29 @@ public class Drivetrain implements Subsystem {
         }
     }
 
+    /** drive a distance at a speed (uses encoder data) */
     public void autoDistDrive(double dist, double speed) {
-        encoder.setDistancePerPulse(1./256.);
+        System.out.println(Math.abs(encoderL.get()));
+        System.out.println(encoderR.get());
+        // Drives forward at half speed until the robot has moved 5 feet, then stops:
+        frontRight.setInverted(true);      // Invert so positive is forward
+        if(Math.abs(encoderL.get()) < dist) {
+            frontLeft.pidWrite(speed);
+            // System.out.println(encoderL.get());
+        } else {
+            frontLeft.stopMotor();
+        }
+        if(Math.abs(encoderL.get()) < dist) {
+            frontRight.pidWrite(speed);
+        } else {
+            frontRight.stopMotor();
+        }
+    }
+
+    public void resetEnc() {
+        encoderL.reset();
+        encoderR.reset();
+
     }
 
     /**initialize the drivetrain**/
@@ -95,6 +119,10 @@ public class Drivetrain implements Subsystem {
         * forward. Change to 'false' so positive/green-LEDs moves robot forward
         */
         drive.setRightSideInverted(false); // do not change this
+        encoderL.reset();
+        encoderR.reset();
+        encoderL.setDistancePerPulse(1./256.); //13377687664
+        encoderR.setDistancePerPulse(1./256.); //1.13377687664 8.667
     }
 
     public void initDefaultCommand() {}

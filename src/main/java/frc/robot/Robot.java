@@ -65,13 +65,15 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_timer.reset();
     m_timer.start();
+    drivetrain.resetEnc();
     //repeat = -10;
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-      drivetrain.autoTimeDrive(5, 0.5, 0);
+      // drivetrain.autoTimeDrive(5, 0.5, 0);
+      drivetrain.autoDistDrive(50000, 0.2);
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */
