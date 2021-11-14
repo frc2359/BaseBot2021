@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
       // drivetrain.autoTimeDrive(5, 0.5, 0);
-      drivetrain.autoDistDrive(50000, 0.2);
+      drivetrain.autoDistDrive(1, 0.2);
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */
