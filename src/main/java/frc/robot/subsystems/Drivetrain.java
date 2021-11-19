@@ -24,8 +24,8 @@ public class Drivetrain implements Subsystem {
     WPI_VictorSPX backRight = new WPI_VictorSPX(ID_DRIVE_BL);
     Timer timer = new Timer(); //for timing autonomous functions
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight); //front motors are masters & control inputs for both front and back
-    private Encoder encoderL = new Encoder(6,7); // parameters are ports
-    private Encoder encoderR = new Encoder(8,9);
+    private Encoder encoderL = new Encoder(6, 7, false); // parameters are ports
+    private Encoder encoderR = new Encoder(8, 9, true);
     
 
     /** drive function that can be called without having to pass in private vairables **/
@@ -41,7 +41,7 @@ public class Drivetrain implements Subsystem {
     public void autoTimeDrive(double time, double speed, double turn) {
         if (timer.get() <= time && speed < 1 && speed > -1 && turn < 1 && turn > -1) {
             System.out.println(timer.get());
-            drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn); //need to make a turn radian calculation and convert into how much should a turn be
+            drive.arcadeDrive(-speed *DRIVE_SPEED_MULT, turn);
         } else {
             this.stopMotors();
         }
@@ -53,13 +53,12 @@ public class Drivetrain implements Subsystem {
         System.out.println(encoderR.get());
         // Drives forward at half speed until the robot has moved 5 feet, then stops:
         frontRight.setInverted(true);      // Invert so positive is forward
-        if(Math.abs(encoderL.get()) < dist) {
+        if(Math.abs(encoderL.getDistance()) < dist) {
             frontLeft.pidWrite(speed);
-            // System.out.println(encoderL.get());
         } else {
             frontLeft.stopMotor();
         }
-        if(Math.abs(encoderL.get()) < dist) {
+        if(Math.abs(encoderL.getDistance()) < dist) {
             frontRight.pidWrite(speed);
         } else {
             frontRight.stopMotor();
@@ -122,8 +121,8 @@ public class Drivetrain implements Subsystem {
         drive.setRightSideInverted(false); // do not change this
         encoderL.reset();
         encoderR.reset();
-        encoderL.setDistancePerPulse(1./256.); //13377687664 a pulse is 
-        encoderR.setDistancePerPulse(1./256.); //1.13377687664 8.667
+        encoderL.setDistancePerPulse(1./256.); // 2 inch  wheels
+        encoderR.setDistancePerPulse(1./256.); //1.13377687664 circ 8.667 ratio
     }
 
     public void initDefaultCommand() {}
