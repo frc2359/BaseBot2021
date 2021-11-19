@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
 // import com.ctre.phoenix.motorcontrol.can.*;
 // import com.ctre.phoenix.CANifier.*;
@@ -121,7 +122,7 @@ public class Drivetrain implements Subsystem {
         drive.setRightSideInverted(false); // do not change this
         encoderL.reset();
         encoderR.reset();
-        encoderL.setDistancePerPulse(1./256.); //13377687664
+        encoderL.setDistancePerPulse(1./256.); //13377687664 a pulse is 
         encoderR.setDistancePerPulse(1./256.); //1.13377687664 8.667
     }
 
