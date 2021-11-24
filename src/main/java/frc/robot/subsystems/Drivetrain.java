@@ -120,8 +120,8 @@ public class Drivetrain implements Subsystem {
         drive.setRightSideInverted(false); // do not change this
         encoderL.reset();
         encoderR.reset();
-        encoderL.setDistancePerPulse(1./256.);
-        encoderR.setDistancePerPulse(1./256.); //1.13377687664 circ 8.667 ratio
+        encoderL.setDistancePerPulse(31.92/8.667);
+        encoderR.setDistancePerPulse(31.92/8.667); //1.13377687664 circ 8.667 ratio
     }
 
     public void initDefaultCommand() {}
